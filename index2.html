@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music player</title><link rel="icon" href="icon2.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image:url('background3.jpeg');
+}
+.raj{
+    width: 25%;
+    min-height: 80vh;
+    background:rgba(0, 0, 0, 0.26);
+    border-radius: 20px;
+    box-shadow: 0px 20px 50px rgba(0,0,0,.4);
+
+}
+h2{
+    text-align: center;
+    margin-top: 2px;
+    font-size: 20px;
+    color: white;
+
+}
+img{
+    width: 80%;
+    height: 50%;
+    margin: 10% 10% 5% 10%;
+    border-radius: 10px;
+    box-shadow: 10px 15px 25px rgba(0,0,0,.4);
+}
+p{
+    margin: 3%;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: white;
+}
+input{
+    width: 80%;
+    margin: 2% 10%;
+}
+button{
+    padding: 20px;
+    text-align: center;
+    margin-top: 2% ;
+    margin-left: 13%;
+    margin-bottom: 4%;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: white;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.4)
+                -1px -1px 1px rgb(255, 255, 255) ;
+
+}
+button:hover{
+    box-shadow: inset 5px 5px 10px rgba(255, 255, 255, 0.849) ,
+                     1px 1px 1px rgba(0,0,0,.4);
+
+}
+
+marquee{
+    width: 80%;
+    margin-left: 10%;
+    color: white;
+    letter-spacing: 3px;
+    font-weight: 600;
+    font-family: serif;
+}
+h3{
+    text-align: center;
+    color: white;
+}
+
+
+
+
+
+
+
+@media screen and (max-width:1200px){
+    .raj{
+        width: 30%;
+        
+    }
+}
+@media screen and (max-width:576px){
+    .raj{
+        width: 70% ;
+        
+    }
+}
+    </style>
+    
+</head>
+<body>
+    
+    <div class="raj">
+        <h3>Welcome to Music player</h3>
+        <h2>Music player</h2>
+        <img id="track_image" >
+        <p id="title">title.mp3</p>
+        <marquee id="artist">Artist name</marquee>
+        <input type="range" id="duration_slider" min="0" max="100" value="0" onclick="change_duration()">
+        <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward fa-1x"></i></button>
+        <button onclick="justplay()" id="play"><i class="fa fa-play fa-1x"></i></button>
+        <button onclick="next_song()" id="next"><i class="fa fa-step-forward fa-1x"></i></button>
+        
+    </div>      
+     
+    <script>
+        let previous = document.querySelector('#pre');
+        let play = document.querySelector('#play');
+        let next = document.querySelector('#next');
+        let title = document.querySelector('#title');
+        let artist = document.querySelector('#artist');
+        let slider = document.querySelector('#duration_slider');
+        let track_image = document.querySelector('#track_image');
+        
+
+        let timer;
+        let autoplay=1; 
+
+        let index_no = 0;
+        let playing_song = false;
+    
+        let track = document.createElement('audio');
+
+        let All_song = [
+        {
+            name : "MASTER",
+            path : "song5.mpeg",
+            img : "master.jpeg",
+            artist : '"Anirudh Ravichander "'
+        },
+        {
+            name : "PUSHPA",
+            path : "srivalli.mpeg",
+            img : "pushma.jpeg",
+            artist : '"Song by Sid sriram "'
+        },
+        {
+            name : "KATHTHI",
+            path : "song1.mpeg",
+            img : "kaththi.jpeg",
+            artist : '"Anirudh Ravichander and Hiphop Adhi"'
+        },
+        {
+            name : "DON",
+            path : "don1.mpeg",
+            img : "done.jpeg",
+            artist : '"Anirudh Ravichander"'
+        },
+        {
+            name : "JAGAME THANDHIRAM",
+            path : "rakita1.mpeg",
+            img : "rakita.jpeg",
+            artist : '"Dhee and Santhoshnarayanan"'
+        }
+
+    ];
+    function load_track(index_no){
+        clearInterval(timer);
+        reset_slider();
+
+        track.src = All_song[index_no].path;
+        title.innerHTML = All_song[index_no].name;
+        track_image.src = All_song[index_no].img;
+        artist.innerHTML = All_song[index_no].artist;
+
+
+        timer = setInterval(range_slider , 1000);
+        total.innerHTML = All_song.length;
+        present.innerHTML = index_n0 + 1;
+        }
+
+        load_track(index_no);
+
+        function justplay(){
+            if(playing_song == false){
+                playsong();
+            }
+            else{
+                pausesong();
+            }
+        }
+      function reset_slider(){
+          slider.value = 0;
+      }
+      function playsong()
+      {
+          track.play();
+          playing_song = true;
+          play.innerHTML ='<i class="fa fa-pause fa-1x"></i>'
+      }
+      function pausesong()
+      {
+          track.pause();
+          playing_song = false;
+          play.innerHTML ='<i class="fa fa-play fa-1x"></i>'
+      }
+      function next_song(){
+          if(index_no< All_song.length -1){
+              index_no += 1;
+              load_track(index_no);
+              playsong();
+
+          }
+          else{
+              index_no = 0;
+              load_track(index_no);
+              playsong();
+          }
+    
+          }
+     function previous_song(){
+          if(index_no > 0){
+              index_no -= 1;
+              load_track(index_no);
+              playsong();
+
+          }
+          else{
+              index_no = All_song.length;
+              load_track(index_no);
+              playsong();
+          }
+          }
+          function change_duration(){
+              slider_position = track.duration * (slider.value /100);
+              track.currentTime = slider_position;
+
+          }
+          function setVolume() { 
+  
+  // Set the volume according to the 
+
+  // percentage of the volume slider set 
+
+  curr_track.volume = volume_slider.value / 100; 
+} 
+
+  
+
+
+     
+    
+
+
+
+      
+</script>
+
+    
+</body>
+</html>

@@ -1,0 +1,99 @@
+<html>
+<head>
+    <title>login page</title>
+    <link rel="icon" href="icon2.jpeg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+
+    
+    
+}
+body{
+    height: 100vh;
+    width: 100%;
+    display:flex;
+    justify-content: center ;
+    align-items: center;
+    background: linear-gradient(to right,rgb(37, 37, 207),rgb(238, 40, 40));
+
+}
+h1{
+    text-align: center;
+    color: white;
+}
+form{
+    width: 25rem;
+    height: 28rem;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 32px -rgba(31,38,135,.37);
+    border-radius: 30px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+label{
+    font-size: 20px;
+    color: white;
+    margin-left: 10%;
+    opacity: .8;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
+}
+input{
+    width: 80%;
+    margin:5% auto;
+    margin-bottom: 8%;
+    border: none;
+    background: transparent;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    opacity: .8;
+}
+button{
+    width: 50%;
+    margin: 3% auto;
+    color: white;
+    font-size: 15px;
+    opacity: 0.7;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
+    box-shadow: 3px 3px 5px rgba(31, 38, 135, .37);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+a{
+    font-size: 12px;
+    text-align: center;
+    color: white;
+    opacity: .7;
+    text-decoration: none;
+}
+#m{
+    text-align: center;
+    color: white;
+}
+    </style>
+</head>
+<body>
+    <form>
+        <h1 id="m">Music Player</h1>
+        <h1>LOGIN</h1>
+        <label>User name</label>
+        <input type="text">
+        <label id="password">Password</label>
+        <input id="password" type="password">
+        <button id="button" ><a href="index2.html">Login</a></button>
+        <a>Forgt Password?</a>
+    </form>
+</body>
+</html>
